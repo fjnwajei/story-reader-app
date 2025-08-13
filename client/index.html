@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moonlight Tales - Your World of Stories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Custom font families and a dedicated, non-repeating background image */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* The background image is a single, large SVG of a savannah scene with a clearer elephant silhouette. */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1920 1080' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0.5' y1='0' x2='0.5' y2='1'%3E%3Cstop offset='0%25' stop-color='%2326221f'/%3E%3Cstop offset='100%25' stop-color='%23453a34'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1920' height='1080' fill='url(%23g)'/%3E%3Cg fill='%2392400e' fill-opacity='0.6'%3E%3Cpath d='M400 980 L 400 500 M150 500 C 150 300 650 300 650 500 Z M50 600 C 50 450 350 450 350 600 Z M450 600 C 450 450 750 450 750 600 Z' /%3E%3Cpath d='M1500 980 L1500 920 C1500 880 1470 860 1440 860 C1410 860 1380 880 1380 920 L1380 980 M1340 980 L1340 900 C1340 850 1310 820 1280 820 C1250 820 1220 850 1220 900 L1220 980 M1440 860 C1440 820 1480 800 1520 820 C1560 840 1580 880 1580 930 C1580 980 1540 980 1500 980 Z M1280 820 C1260 820 1240 800 1240 770 C1240 740 1260 720 1290 720 C1320 720 1340 740 1340 770 L1340 850 Z'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed; /* Keeps the background stationary on scroll */
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            /* 3D effect using layered text-shadows */
+            text-shadow: 
+                1px 1px 0px rgba(180, 83, 9, 0.5),  /* Lighter amber highlight */
+                2px 2px 0px #78350f, /* Main shadow color */
+                3px 3px 0px #453a34, /* Darker edge */
+                4px 4px 2px rgba(0,0,0,0.4); /* Soft drop shadow */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Content Wrapper with a lighter semi-transparent overlay to ensure readability and background visibility -->
+    <div class="relative min-h-screen bg-stone-900/50 backdrop-blur-sm">
+        <!-- Main Container -->
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+            <!-- Header Section -->
+            <header class="flex flex-col sm:flex-row justify-between items-center mb-10">
+                <h1 class="text-4xl text-white mb-4 sm:mb-0 font-cinzel tracking-wider">
+                    <span class="text-amber-400">Moonlight</span> Tales
+                </h1>
+                <nav class="flex items-center space-x-4">
+                    <a href="#" class="text-stone-300 hover:text-white transition-colors duration-300">Library</a>
+                    <a href="#" class="text-stone-300 hover:text-white transition-colors duration-300">My Stories</a>
+                    <button class="bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-5 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+                        Create a Story
+                    </button>
+                </nav>
+            </header>
+
+            <!-- Filtering and Sorting Section -->
+            <section class="mb-12 p-6 bg-stone-800/60 rounded-xl shadow-lg border border-stone-700/50">
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 items-center">
+                    <!-- Genre Filters -->
+                    <div class="lg:col-span-3">
+                        <h3 class="text-sm font-semibold text-stone-400 mb-3 uppercase tracking-wider">Genre</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-4 py-2 text-sm font-medium text-white bg-amber-500 rounded-full shadow-sm">All</button>
+                            <button class="px-4 py-2 text-sm font-medium text-stone-300 bg-stone-700 hover:bg-stone-600 rounded-full transition-colors duration-200">Adventure</button>
+                            <button class="px-4 py-2 text-sm font-medium text-stone-300 bg-stone-700 hover:bg-stone-600 rounded-full transition-colors duration-200">Fantasy</button>
+                            <button class="px-4 py-2 text-sm font-medium text-stone-300 bg-stone-700 hover:bg-stone-600 rounded-full transition-colors duration-200">Folklore</button>
+                            <button class="px-4 py-2 text-sm font-medium text-stone-300 bg-stone-700 hover:bg-stone-600 rounded-full transition-colors duration-200">Mystery</button>
+                        </div>
+                    </div>
+                    <!-- Sort By Dropdown -->
+                    <div>
+                        <label for="sort-by" class="block text-sm font-semibold text-stone-400 mb-3 uppercase tracking-wider">Sort by</label>
+                        <select id="sort-by" class="w-full bg-stone-700 border-stone-600 text-white rounded-lg p-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                            <option>Most Popular</option>
+                            <option>Recently Added</option>
+                            <option>Top Rated</option>
+                        </select>
+                    </div>
+                    <!-- Status Dropdown -->
+                    <div>
+                        <label for="status" class="block text-sm font-semibold text-stone-400 mb-3 uppercase tracking-wider">Status</label>
+                        <select id="status" class="w-full bg-stone-700 border-stone-600 text-white rounded-lg p-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                            <option>All</option>
+                            <option>Unread</option>
+                            <option>Read</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Story Grid -->
+            <main id="story-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Story cards will be injected here by JavaScript -->
+            </main>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const storyGrid = document.getElementById('story-grid');
+
+                    // Function to create a single story card
+                    const createStoryCard = (story) => {
+                        // Use placeholder data for fields not in the API response
+                        const description = 'A new adventure awaits. Dive in to discover the details of this captivating tale.';
+                        const likes = Math.floor(Math.random() * 500) + 10; // Random likes
+                        const views = Math.floor(Math.random() * 1500) + 100; // Random views
+                        const isUnread = Math.random() > 0.5;
+                        const imageName = story.title.toLowerCase().replace(/\s+/g, '-');
+
+                        return `
+                            <div class="group bg-stone-800/80 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 ease-in-out border border-stone-700/50">
+                                <div class="relative">
+                                    <img src="https://placehold.co/600x400/78350f/f59e0b?text=${encodeURIComponent(story.title)}" 
+                                         onerror="this.onerror=null;this.src='https://placehold.co/600x400/78350f/f59e0b?text=Image+Not+Found';"
+                                         alt="Cover for ${story.title}" class="w-full h-48 object-cover">
+                                    <div class="absolute top-2 right-2 ${isUnread ? 'bg-emerald-600' : 'bg-stone-500'} text-white text-xs font-bold px-2 py-1 rounded-full">
+                                        ${isUnread ? 'Unread' : 'Read'}
+                                    </div>
+                                </div>
+                                <div class="p-5">
+                                    <h2 class="text-xl font-bold text-white font-cinzel mb-2 truncate group-hover:text-amber-400 transition-colors">${story.title}</h2>
+                                    <p class="text-stone-400 text-sm mb-4 h-10">${description}</p>
+                                    <div class="flex justify-between items-center text-sm text-stone-500">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="flex items-center space-x-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg>
+                                                <span>${likes}</span>
+                                            </span>
+                                             <span class="flex items-center space-x-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z" /><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.022 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" /></svg>
+                                                <span>${views}</span>
+                                            </span>
+                                        </div>
+                                        <a href="#" class="font-semibold text-amber-400 hover:text-amber-300">Read Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    };
+
+                    // Fetch stories and populate the grid
+                    fetch('/api/stories')
+                        .then(response => response.json())
+                        .then(stories => {
+                            if (stories && stories.length > 0) {
+                                storyGrid.innerHTML = stories.map(createStoryCard).join('');
+                            } else {
+                                storyGrid.innerHTML = '<p class="text-white col-span-full text-center">No stories found. Why not create one?</p>';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching stories:', error);
+                            storyGrid.innerHTML = '<p class="text-white col-span-full text-center">Could not load stories. Please try again later.</p>';
+                        });
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html>

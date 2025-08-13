@@ -1,17 +1,23 @@
 // Express + SQLite3 backend for story reader
 import express from 'express';
-import sqlite3Pkg from 'sqlite3';
+import sqlite3 from 'sqlite3';
 import cors from 'cors';
 import util from 'util';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const sqlite3 = sqlite3Pkg.verbose();
+// Recreate __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.')); // Serve static files like index.html
+
+// Serve static files from the 'client' directory
+app.use(express.static(path.join(__dirname, 'client')));
 
 // Open (or create) the SQLite3 database
 // Use Render's persistent disk for the database
